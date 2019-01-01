@@ -29,10 +29,9 @@ from flask_wtf import CSRFProtect,csrf
 
 
 def create_app(config_name):
-    from info.modules.index import index_blue                   #导入主页蓝图
 
     #实例化app
-    app=Flask(__name__)
+    app=Flask(__name__,static_folder='static/html')
     #使用配置对象
     app.config.from_object(config_dict[config_name])
     #通过函数来让db和app进行关联
@@ -40,7 +39,6 @@ def create_app(config_name):
     #Session初始化
     Session(app)
 
-    app.register_blueprint(index_blue)                                   #注册主页蓝图
 
     #开启csrf保护
     CSRFProtect(app)
@@ -55,5 +53,11 @@ def create_app(config_name):
         response.set_cookie('csrf_token', csrf_token)
         # 返回响应
         return response
+
+    from info.modules.index import index_blue  # 导入主页蓝图
+    from info.modules.passport import passport_blue  # 导入注册登录蓝图
+
+    app.register_blueprint(index_blue)  # 注册主页蓝图
+    app.register_blueprint(passport_blue)  # 注册注册登录蓝图
 
     return app
