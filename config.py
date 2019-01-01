@@ -12,7 +12,7 @@ class Config():
     SESSION_USE_SIGNER = True                                                                                                               #是否对发送到浏览器上session的cookie值进行加密
     PERMANPERMANPERMANENT_SESSION_LIFETIME= 86400
 
-    SQLALCHEMY_DATABASE_URI = 'mysql://hmlhc:mysql@localhost/lhc_info'                             # 配置数据库的连接和动态追踪修改
+    SQLALCHEMY_DATABASE_URI = 'mysql://hmlhc:mysql@localhost/ihome'                             # 配置数据库的连接和动态追踪修改
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 
 class DevelopmentConfig(Config):
